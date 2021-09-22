@@ -1,7 +1,12 @@
 require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 const { HarmonyAddress } = require('@harmony-js/crypto');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+  intents: [
+      Intents.FLAGS.GUILDS,
+      Intents.FLAGS.DIRECT_MESSAGES
+  ]
+});
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
