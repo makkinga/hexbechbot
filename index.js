@@ -18,20 +18,19 @@ client.on('messageCreate', async message => {
         const embed = new MessageEmbed()
             .setTitle('Hello, Hero!')
             .setDescription('Write `/convaddr` and include either your ETH style address or ONE address to be converted to the other')
-
+      
         await message.channel.send({embeds: [embed]})
     }
 })
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return
-
     if (interaction.commandName === 'convaddr') {
         try {
             const address    = interaction.options.getString('address', true)
             const hmyAddress = new HarmonyAddress(address)
 
-            const embed = new MessageEmbed()
+            const embed      = new MessageEmbed()
                 .addField(`ETH`, '```' + hmyAddress.basicHex + '```')
                 .addField(`Harmony`, '```' + hmyAddress.bech32 + '```')
 
