@@ -5,12 +5,12 @@ const {ApplicationCommandOptionType, Routes} = require('discord-api-types/v9')
 const commands = [{
     name       : 'convaddr',
     description: 'Convert Harmony Address!',
-    options    : [{
+    options    : {
         name       : 'address',
         type       : ApplicationCommandOptionType.String,
         required   : true,
         description: 'should be clear enough, no?'
-    }]
+    }
 }]
 
 const rest = new REST({version: '9'}).setToken(process.env.TOKEN);
@@ -25,7 +25,7 @@ const rest = new REST({version: '9'}).setToken(process.env.TOKEN);
                 .filter(Boolean)
                 .map((guild_id) => {
                     rest.put(
-                        Routes.applicationCommands(process.env.CLIENT_ID, guild_id),
+                        Routes.applicationCommands(process.env.CLIENT_ID),
                         {body: commands},
                     )
                 })

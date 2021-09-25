@@ -25,6 +25,7 @@ client.on('messageCreate', async message => {
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return
+
     if (interaction.commandName === 'convaddr') {
         try {
             const address    = interaction.options.getString('address', true)
@@ -34,7 +35,7 @@ client.on('interactionCreate', async (interaction) => {
                 .addField(`ETH`, '```' + hmyAddress.basicHex + '```')
                 .addField(`Harmony`, '```' + hmyAddress.bech32 + '```')
 
-            await interaction.channel.send({embeds: [embed]})
+            await interaction.reply({embeds: [embed]})
         } catch (error) {
             await interaction.reply(String(error))
         }
